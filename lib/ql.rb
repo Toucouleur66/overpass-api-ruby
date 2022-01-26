@@ -1,4 +1,4 @@
-require_relative 'base'
+require_relative "base"
 
 module OverpassAPI
   # builds queries in overpass ql format
@@ -9,12 +9,12 @@ module OverpassAPI
     end
 
     def build_query(query)
-      header = ''
+      header = ""
       header << "[bbox:#{@bbox}]" if @bbox
       header << "[timeout:#{@timeout}]" if @timeout
       header << "[maxsize:#{@maxsize}]" if @maxsize
 
-      header << '[out:json]'
+      header << "[out:json]"
 
       "#{header};#{query}"
     end
