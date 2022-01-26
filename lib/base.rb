@@ -1,10 +1,9 @@
-require 'httpi'
-require 'json'
+require "json"
 
 module OverpassAPI
   # base class, ql and xml extend this
   class Base
-    DEFAULT_ENDPOINT = 'http://overpass-api.de/api/interpreter'.freeze
+    DEFAULT_ENDPOINT = "http://overpass-api.de/api/interpreter".freeze
 
     def initialize(args = {})
       bbox = args[:bbox]
@@ -29,8 +28,8 @@ module OverpassAPI
     private
 
     def perform(query)
-      r = HTTPI::Request.new(url: @endpoint, body: query)
-      JSON.parse(HTTPI.post(r).body, symbolize_names: true)
+      r = HTTParty.post(@endpoint, body: query)
+      JSON.parse(r.body, symbolize_names: true)
     end
   end
 end
